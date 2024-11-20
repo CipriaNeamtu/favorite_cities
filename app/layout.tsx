@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "reflect-metadata"
 import { Provider } from "@/components/ui/provider"
 import Nav from "./components/Nav";
+import { SessionProvider } from "next-auth/react"
+import { AuthProvider } from "@/app/context/Auth";
 
 export const metadata: Metadata = {
   title: "Favorite Cities",
@@ -17,8 +19,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Provider>
-          <Nav />
-          {children}
+          <SessionProvider>
+            <AuthProvider >
+              <Nav />
+              {children}
+            </AuthProvider>
+          </SessionProvider>
         </Provider>
       </body>
     </html>

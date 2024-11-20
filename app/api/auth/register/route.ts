@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const user = userRepository.create({ email, password: hashedPassword });
     await userRepository.save(user);
 
-    return new Response(JSON.stringify({ message: "User created." }), { status: 201 });
+    return new Response(JSON.stringify({ message: "User created." }), { status: 200 });
   } catch (error) {
     console.error("api::auth::register: Error creating user:", error);
     return new Response(JSON.stringify({ message: "Registration error", error }), { status: 500 });

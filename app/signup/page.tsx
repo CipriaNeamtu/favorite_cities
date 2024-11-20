@@ -1,7 +1,9 @@
-import { Flex } from "@chakra-ui/react"
-import SignUp from "../auth/sign-up"
+'use client'
 
-const page = () => {
+import { Flex } from "@chakra-ui/react"
+import SignUp from "../components/SignUp"
+
+const Page = () => {
 	return (
 		<Flex justify={'center'} align={'center'}>
 			<Flex padding={'16'} boxShadow={'lg'} borderRadius={'xl'}>
@@ -11,4 +13,4 @@ const page = () => {
 	)
 }
 
-export default page	
+export default Page	
