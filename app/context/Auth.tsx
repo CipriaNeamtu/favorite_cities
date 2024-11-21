@@ -13,6 +13,7 @@ type AuthProviderProps = {
 export interface AuthProps {
 	currentUser?: User | null;
 	getCurrentUser?: (user: User) => void;
+	isLoading?: boolean;
 }
 
 const AuthContext = React.createContext<AuthProps | null>(null);
@@ -27,6 +28,7 @@ export function useAuth() {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const { data: session } = useSession();
 	
@@ -41,15 +43,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 			console.error('AuthContext::getCurrentUser:', error)
 		}
 	} 
-
+	
 	useEffect(() => {
 		if (session?.user?.email) {
 			getCurrentUser(session.user.email)
-		}
+		} 
+		setIsLoading(false);
+		
 	}, [session])
 
 	const value: AuthProps = {
 		currentUser,
+		isLoading,
 	}
 
 	return (

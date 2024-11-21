@@ -4,4 +4,5 @@ export const PAGE = {
 	FAVORITES: '/favorites',
 	SEARCH: '/search',
 	SIGNUP: '/signup',
+	USER: '/user',
 }

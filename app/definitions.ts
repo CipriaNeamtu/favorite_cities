@@ -15,6 +15,7 @@ export type DialogType = {
 	onOpenChange: () => void;
 	onSave: () => void;
 	placement?: 'center' | 'top' | 'bottom';
+	cancelButton?: string;
 }
 
 export type CityType = {

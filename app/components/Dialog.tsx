@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { Text } from "@chakra-ui/react"
 
-const Dialog = ({ title, text, open, onOpenChange, onSave, placement }: DialogType) => {
+const Dialog = ({ title, text, open, onOpenChange, onSave, placement, cancelButton }: DialogType) => {
 
   const handleAction = () => {
     if (onSave) {
@@ -32,10 +32,12 @@ const Dialog = ({ title, text, open, onOpenChange, onSave, placement }: DialogTy
           </Text>
         </DialogBody>
         <DialogFooter>
-          <DialogActionTrigger asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogActionTrigger>
-          <Button onClick={handleAction}>Save</Button>
+          { cancelButton && 
+            <DialogActionTrigger asChild>
+              <Button variant="outline">{cancelButton}</Button>
+            </DialogActionTrigger>
+          }
+          <Button onClick={handleAction}>Done</Button>
         </DialogFooter>
         <DialogCloseTrigger />
       </DialogContent>

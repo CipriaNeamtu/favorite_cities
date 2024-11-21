@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import { PAGE } from "../constants";
 
 export default function SignUp() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("")
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('')
 	const [message, setMessage] = useState<string | null>(null);
 
 	const route = useRouter();
@@ -37,8 +37,14 @@ export default function SignUp() {
 		if (response.status === 200) {
 			const { message } = await response.json();
 			setMessage(message);
+			resetForm();
 		}
 	};
+
+	const resetForm = () => {
+		setPassword('');
+		setEmail('');
+	}
 
 	const redirectTo = () => {
 		setMessage(null);
