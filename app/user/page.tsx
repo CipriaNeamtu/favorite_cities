@@ -47,7 +47,7 @@ const Page = () => {
 			<Flex flexDirection={'column'} alignSelf={'center'} mt={'10'} alignItems={'center'} gap={'4'}>
 				<Text textStyle={'2xl'} alignSelf={'flex-start'}>My Profile</Text>
 				<Flex gap={'4'} mt={'4'} alignItems={'center'}>
-					<Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? ''} size={'2xl'} />
+					<Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? undefined} size={'2xl'} />
 					<Tooltip content="In progress..." positioning={{ placement: 'top' }}>
 						<Button colorPalette={'blue'}>Change Picture</Button>
 					</Tooltip>

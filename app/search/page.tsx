@@ -19,9 +19,21 @@ const Page = () => {
 		setCities(results);
 	}
 
-	const sendDetails = (city: CityType) => {
-		router.push(`${PAGE.CITY}/${city.name}`)
-	}
+	// const sendDetails = (city: CityType) => {
+	// 	router.push(`${PAGE.CITY}/${city.name}`)
+	// }
+
+	const sendDetails = async (city: CityType) => {
+		const response = await fetch('/api/saveCity', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(city),
+		});
+	
+		if (response.ok) {
+			router.push(PAGE.CITY);
+		}
+	};
 
 	return (
 		<Container display={'flex'} flexDirection={'column'}>

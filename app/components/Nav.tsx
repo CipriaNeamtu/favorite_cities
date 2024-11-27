@@ -39,7 +39,7 @@ const Nav = () => {
         <ColorModeButton />
           <Tooltip content={currentUser?.name ?? 'User Profile'} positioning={{ placement: 'left' }}>
             <Link href={PAGE.USER} textDecoration="none" outline="none" cursor={'pointer'}>
-               <Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? ''} />
+               <Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? undefined} />
             </Link>
           </Tooltip>
         { currentUser ? 
