@@ -30,7 +30,7 @@ const Page = () => {
 	if (!favoriteCities) return <Loading />
 
 	return (
-		<Container>
+		<Container justifyContent={'center'} pb={'48'}>
 			Favorites Page
 
 			<Flex gap={'6'} flexWrap={'wrap'} justifyContent={'center'}>
@@ -45,12 +45,10 @@ const Page = () => {
 						<Box>
 							<Card.Body>
 								<Card.Title mb="2">{city.name}</Card.Title>
-								<Card.Description>
-									<Flex flexDirection={'column'} gap={'2'}>
-										<Box>Country: {city.country}</Box>
-										<Box>Population: {city.population}</Box>
-									</Flex>
-								</Card.Description>
+								<Flex flexDirection={'column'} gap={'2'}>
+									<Box>Country: {city.country}</Box>
+									<Box>Population: {city.population}</Box>
+								</Flex>
 								<HStack mt="4">
 									<Badge>Latitude: {city.latitude}</Badge>
 									<Badge>Longitude: {city.longitude}</Badge>

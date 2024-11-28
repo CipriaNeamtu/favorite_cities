@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import { SessionProvider } from "next-auth/react"
 import { AuthProvider } from "@/app/context/Auth";
 import Script from 'next/script';  // Importă componenta Script
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Favorite Cities",
@@ -28,6 +29,7 @@ export default function RootLayout({
             <AuthProvider >
               <Nav />
               {children}
+              <Footer />
             </AuthProvider>
           </SessionProvider>
         </Provider>

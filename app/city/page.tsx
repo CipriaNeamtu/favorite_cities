@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Badge, Box, Card, HStack, Image, Button, Flex } from "@chakra-ui/react"
+import { Container, Badge, Box, Card, HStack, Image, Button, Flex, Heading } from "@chakra-ui/react"
 import WindyMap from "@/app/components/WindyMap";
 import { useEffect, useState } from "react";
 import { CityType } from "../definitions";
@@ -50,23 +50,21 @@ const Page = () => {
 	if (!city) return <Loading />
 
 	return (
-		<Container display={'flex'} flexDir={'column'} gap={'10'}>
+		<Container display={'flex'} flexDir={'column'} gap={'10'} pb={'48'}>
 			<Card.Root flexDirection="row" overflow="hidden" maxW="xl">
 				<Image
 					objectFit="cover"
 					maxW="200px"
 					src={city.imageUrl ?? undefined}
-					alt="Caffe Latte"
+					alt={city.name}
 				/>
 				<Box>
 					<Card.Body>
 						<Card.Title mb="2">{city.name}</Card.Title>
-						<Card.Description>
-							<Flex flexDirection={'column'} gap={'2'}>
-								<Box>Country: {city.country}</Box>
-								<Box>Population: {city.population}</Box>
-							</Flex>
-						</Card.Description>
+						<Flex flexDirection={'column'} gap={'2'}>
+							<Box>Country: {city.country}</Box>
+							<Box>Population: {city.population}</Box>
+						</Flex>
 						<HStack mt="4">
 							<Badge>Latitude: {city.latitude}</Badge>
 							<Badge>Longitude: {city.longitude}</Badge>
@@ -78,6 +76,7 @@ const Page = () => {
 				</Box>
 			</Card.Root>
 
+			<Heading size="xl">The weather for {city.name}</Heading>
 			<WindyMap cityData={city} />
 		</Container>
 	)

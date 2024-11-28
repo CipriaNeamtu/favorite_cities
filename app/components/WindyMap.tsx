@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { WindyMapTypes } from '../definitions';
 import L from 'leaflet';
+
 // import { getApiKey } from '../services/envService';
 
 const WindyMap = ({ cityData }: WindyMapTypes) => {
