@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 		await signIn("credentials", { email, password, redirect: false, /* callbackUrl: '/' */ });
 		return new Response(JSON.stringify({ message: "User Logged In." }), { status: 200 });
 	} catch (error) {
-		console.error('api::login::signIn:', error)
+		console.error('api::auth::login::signIn:', error)
 		return new Response(JSON.stringify({ message: "Something went wrong!", error }), { status: 500 });
 	}
 } 

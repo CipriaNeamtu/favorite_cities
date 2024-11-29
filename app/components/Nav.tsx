@@ -9,6 +9,8 @@ import { MdLocationCity } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
 import { signOut, signIn } from 'next-auth/react';
 import { useAuth } from '../context/Auth';
+import { Avatar } from "@/components/ui/avatar"
+import { Tooltip } from '@/components/ui/tooltip';
 
 const Nav = () => {
   const navButtons = [
@@ -33,8 +35,13 @@ const Nav = () => {
         ))}
       </Flex>
 
-      <Flex gap={'4'}>
+      <Flex gap={'4'} alignItems={'center'}>
         <ColorModeButton />
+          <Tooltip content={currentUser?.name ?? 'User Profile'} positioning={{ placement: 'left' }}>
+            <Link href={PAGE.USER} textDecoration="none" outline="none" cursor={'pointer'}>
+               <Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? undefined} />
+            </Link>
+          </Tooltip>
         { currentUser ? 
           <Button colorPalette={'blue'} onClick={() => signOut()}>Sign Out</Button>
           :
