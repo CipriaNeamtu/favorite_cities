@@ -9,6 +9,7 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { useEffect, useState } from "react"
 import { User } from "../definitions"
 import Loading from "../components/Loading"
+import TemperatureChart from "../components/TemperatureChart"
 
 const Page = () => {
 	const { currentUser } = useAuth();
@@ -43,8 +44,8 @@ const Page = () => {
 	}
 
 	return (
-		<Container display={'flex'} flexDirection={'column'}>
-			<Flex flexDirection={'column'} alignSelf={'center'} mt={'10'} alignItems={'center'} gap={'4'}>
+		<Container display={'flex'} flexDirection={'column'} pb={'48'}>
+			<Flex flexDirection={'column'} alignSelf={'center'} mt={'10'} mb={'10'} alignItems={'center'} gap={'4'}>
 				<Text textStyle={'2xl'} alignSelf={'flex-start'}>My Profile</Text>
 				<Flex gap={'4'} mt={'4'} alignItems={'center'}>
 					<Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? undefined} size={'2xl'} />
@@ -96,6 +97,8 @@ const Page = () => {
 					</Flex>
 				</Flex>
 			</Flex>
+
+			<TemperatureChart />
 		</Container>
 	)
 }
