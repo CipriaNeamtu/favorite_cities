@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Button, Container, Flex, Heading, Image, Link, List, Stack, Text } from "@chakra-ui/react";
+import { Button, Container, Flex, Heading, Image, Link, List, Stack, Text } from "@chakra-ui/react";
 import { useAuth } from "./context/Auth";
 import Loading from "./components/Loading";
 import { LuArrowRight, LuCheckCircle } from "react-icons/lu";
@@ -14,7 +14,7 @@ export default function Home() {
 	return (
 		<Container pb={'48'}>
 			<Flex flexDir={'column'}>
-				<Box alignSelf={'center'} mb={'10'}>Welcome to Favorite Cities Website</Box>
+				<Heading size={'xl'} alignSelf={'center'} mb={'10'}>Welcome to Favorite Cities Website</Heading>
 
 				<Stack align="flex-start">
 					<Heading size="2xl">Discover, organize, and share your list of dream destinations.</Heading>
