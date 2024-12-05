@@ -5,4 +5,5 @@ export const PAGE = {
 	SEARCH: '/search',
 	SIGNUP: '/signup',
 	USER: '/user',
+	DASHBOARD: '/dashboard',
 }

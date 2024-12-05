@@ -83,8 +83,8 @@ export default function SignUp() {
 					</Fieldset.Content>
 					
 					<Flex gap={'4'}>
-						<Button type="submit" name="signIn">Register</Button>
-						<Button type="submit" name="login">Sign In</Button>
+						<Button type="submit" name="signIn" color={'blue.500'} variant={'outline'}>Register</Button>
+						<Button type="submit" name="login" color={'blue.500'} variant={'outline'}>Sign In</Button>
 					</Flex>
 				</Fieldset.Root>
 			</form>

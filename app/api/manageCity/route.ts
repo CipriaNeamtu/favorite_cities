@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 		const favoriteCitiesRepository = AppDataSource.getRepository(FavoriteCities);
 		await favoriteCitiesRepository.save(city);
 
-		return new Response(JSON.stringify({ message: 'City added!' }), { status: 200 });
+		return new Response(JSON.stringify({ message: `${city.name} has been added to favorite cities page!` }), { status: 200 });
 	} catch (error) {
 			console.error('api::manageCity:POST', error)
 			return new Response(JSON.stringify({ message: 'Method not allowed' }), { status: 405 });

@@ -7,6 +7,7 @@ import { FaHome } from 'react-icons/fa';
 import { MdFavorite } from "react-icons/md";
 import { MdLocationCity } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
+import { RiAdminFill } from "react-icons/ri";
 import { signOut, signIn } from 'next-auth/react';
 import { useAuth } from '../context/Auth';
 import { Avatar } from "@/components/ui/avatar"
@@ -18,6 +19,7 @@ const Nav = () => {
     { name: 'Search', pathName: PAGE.SEARCH, icon: <IoIosSearch /> },
     { name: 'City', pathName: PAGE.CITY, icon: <MdLocationCity /> },
     { name: 'Favorites', pathName: PAGE.FAVORITES, icon: <MdFavorite /> },
+    { name: 'Dashboard', pathName: PAGE.DASHBOARD, icon: <RiAdminFill /> },
   ];
 
   const { currentUser } = useAuth()
@@ -28,20 +30,27 @@ const Nav = () => {
 
       <Flex justify={'center'} gap={'10'}>
         { navButtons.map((button, index) => (
-          <Link key={index} href={button.pathName} textDecoration="none" outline="none">
-            {button.icon}
-            {button.name}
-          </Link>
+          button.name === 'Dashboard' && currentUser?.role !== 'admin' ? (
+            null
+          ) : (
+            <Link key={index} href={button.pathName} textDecoration="none" outline="none">
+              {button.icon}
+              {button.name}
+            </Link>
+          )
         ))}
       </Flex>
 
       <Flex gap={'4'} alignItems={'center'}>
         <ColorModeButton />
+        { currentUser && 
           <Tooltip content={currentUser?.name ?? 'User Profile'} positioning={{ placement: 'left' }}>
             <Link href={PAGE.USER} textDecoration="none" outline="none" cursor={'pointer'}>
                <Avatar name={currentUser?.name ?? 'User'} src={currentUser?.image ?? undefined} />
             </Link>
           </Tooltip>
+        }
+        
         { currentUser ? 
           <Button colorPalette={'blue'} onClick={() => signOut()}>Sign Out</Button>
           :
