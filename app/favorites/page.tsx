@@ -4,9 +4,11 @@ import { Container, Badge, Box, Card, HStack, Image, Button, Flex } from "@chakr
 import { useEffect, useState } from "react"
 import Loading from "../components/Loading";
 import { CityType } from "../definitions";
+import Dialog from "../components/Dialog";
 
 const Page = () => {
 	const [favoriteCities, setFavoriteCities] = useState<CityType[] | null>(null);
+	const [message, setMessage] = useState<string | null>(null);
 
 	const getFavoriteCities = async () => {
 		const response = await fetch('/api/manageCity');
@@ -15,17 +17,20 @@ const Page = () => {
 	}
 	
 	const deleteCity = async (city: CityType) => {
-		await fetch('/api/manageCity', {
+		const response = await fetch('/api/manageCity', {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(city),
 		});
+
+		const { message } = await response.json();
+		setMessage(message);
 	}
 
 	useEffect(() => {
 		getFavoriteCities();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [message])
 
 	if (!favoriteCities) return <Loading />
 
@@ -64,6 +69,14 @@ const Page = () => {
 					<Box>Nothing to show!</Box>
 				}
 			</Flex>
+
+			<Dialog 
+				title='Favorite Cities Status' 
+				text={message ?? ''} 
+				open={message ? true : false} 
+				onOpenChange={() =>setMessage(null)} 
+				onSave={() =>setMessage(null)}
+			/>
 		</Container>
 	)
 }

@@ -6,6 +6,8 @@ export type User = {
 	emailVerified: boolean | null;	
 	image: string | null;	
 	role: string | null;
+	createdAt: Date | null;
+	updatedAt: Date | null;
 }
 
 export type DialogType = {

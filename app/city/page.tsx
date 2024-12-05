@@ -5,11 +5,17 @@ import WindyMap from "@/app/components/WindyMap";
 import { useEffect, useState } from "react";
 import { CityType } from "../definitions";
 import Loading from "../components/Loading";
+import Dialog from "../components/Dialog";
+import { useRouter } from "next/navigation";
+import { PAGE } from "../constants";
 
 const Page = () => {
 	const [city, setCity] = useState<CityType | null>(null);
+	const [message, setMessage] = useState<string | null>(null);
 	const defaulCity = { name: 'Brasov', latitude: 45.64861, longitude: 25.60613 };
 	const unplashApiKey = process.env.NEXT_PUBLIC_UNPLASH_ACCESS_KEY;
+
+	const route = useRouter();
 
 	const getCityData = async () => {
 		const response = await fetch('/api/saveCity');
@@ -25,11 +31,13 @@ const Page = () => {
 	}
 
 	const addCityToFavoritesPage = async () => {
-		await fetch('/api/manageCity', {
+		const response = await fetch('/api/manageCity', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(city),
 		});
+		const { message } = await response.json();
+		setMessage(message);
 	}
 
 	const getCityImage = async (city: string) => {
@@ -40,6 +48,11 @@ const Page = () => {
 		} catch (error) {
 				console.error('Page::city::getCityImage', error)
 		}
+	}
+
+	const redirectTo = () => {
+		setMessage(null);
+		route.push(PAGE.FAVORITES);
 	}
 
 	useEffect(() => {
@@ -78,6 +91,14 @@ const Page = () => {
 
 			<Heading size="xl">The weather for {city.name}</Heading>
 			<WindyMap cityData={city} />
+
+			<Dialog 
+				title='Favorite Cities Status' 
+				text={message ?? ''} 
+				open={message ? true : false} 
+				onOpenChange={() =>setMessage(null)} 
+				onSave={redirectTo}
+			/>
 		</Container>
 	)
 }

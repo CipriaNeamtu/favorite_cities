@@ -22,7 +22,7 @@ const transformer: Record<"date" | "bigint", ValueTransformer> = {
 export class UserEntity {
 	@PrimaryGeneratedColumn("uuid")
 	id!: string
-
+	
 	@Column({ type: "varchar", nullable: true })
 	name!: string | null
 
@@ -37,6 +37,13 @@ export class UserEntity {
 
 	@Column({ type: "varchar", nullable: true })
 	image!: string | null
+
+	// "datetime('now', 'localtime')"
+	@Column({ type: "datetime", nullable: true, default: () => "CURRENT_TIMESTAMP" })
+	createdAt!: Date | null;
+
+	@Column({ type: "datetime", nullable: true, default: () => "CURRENT_TIMESTAMP" })
+	updatedAt!: Date | null;
 
 	@Column({ type: "varchar", nullable: true })
 	role!: string | null
